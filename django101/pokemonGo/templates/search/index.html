@@ -1,0 +1,52 @@
+{% extends "search/base.html" %}
+
+
+{% block head %}
+	<title> 😍{{date}} </title>
+{% endblock head %}
+
+
+
+{% block style %}
+
+
+{% endblock style %}
+
+
+
+
+{% block content %}
+
+	<h1>You searched for {{ search_string }}</h1>
+
+	{% for pokemon in pokedex %}
+		<p> {{pokemon.pokemon_name}}
+			type <p>{{pokemon.pokemon_type}}<p>
+	<img src='static/images/{{pokemon.pokemon_image}}'
+
+	{% endfor %}
+
+
+<!-- 	{% for i in '123' %}
+		<div class='row'>
+
+			{% for j in '123' %}
+				<div class="col-md-4">
+					<img src='static/images/{{list_dir.2}}'>
+				</div>
+				<br>
+			{% endfor %}
+		</div>
+	{% endfor %} -->
+<!-- 	<img src='static/images/{{list_dir.0}}'>
+ -->
+	<!-- {% for item in list_dir %}
+		<a href='static/images/{{item}}'>{{item}}</a>
+	{% endfor %} -->
+
+
+
+	<!-- <code>
+		{{list_dir}}
+	</code> -->
+{% endblock content %}
