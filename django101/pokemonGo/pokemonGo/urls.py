@@ -7,10 +7,25 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^pokemon','search.views.index',name='index'),
-    #url(r'^pokemon','search.views.random',name='random'),
-    url(r'^search$','search.views.srch',name='search'),  # search- folder name, views- file name, srch- function in views.py
-    url(r'^search/(\d+)','search.views.srch2',name='search2'), #regex - unnamed grouping (\d+) 
-    #url(r'^search/(?P<foo>\d+)','search.views.srch3',name='search2'),
+    url(r'^$', 'search.views.index', name='index'),
+    #url(r'^pokemon$', 'search.views.index', name = 'index'),
+    url(r'^random$', 'search.views.random', name = 'random'),
+    url(r'^searchGET$', 'search.views.srchget', name = 'search'),
+    url(r'^searchPOST$', 'search.views.srchpost', name = 'searchPOST'),
+    url(r'^searchLISTJS$', 'search.views.srchlistjs', name = 'searchLISTJS'),
+    url(r'^edit/(\d+)', 'search.views.edit', name = 'edit'),
+
+    url(r'^p/oddish/','search.views.oddish',name = 'oddish'),
+    url(r'^game/','search.views.game',name = 'game'),
+    url(r'^p/(?P<page_id>\d+)', 'search.views.index2', name = 'index2'),
+
+    url(r'^pokemon/(?P<pokemon_id>\d+)/(?P<pokemon_name>[\w\-]+)', 'search.views.description', name = 'description'),
+    url(r'^pokemon/(?P<pokemon_id>\d+)/', 'search.views.short_url', name = 'short_url'),
+    
+    #un-named grouping
+    #url(r'^search/(\d+)', 'search.views.srch2', name = 'search2'),
+    #named-grouping
+    #url(r'^search/(?P<foo>\d+)', 'search.views.srch2', name = 'search2'),
+    url(r'^searchREDIRECT/(?P<search_string>[\*\w\-]+)/$', 'search.views.srchredirect', name = 'searchredirect'),
 
 )
