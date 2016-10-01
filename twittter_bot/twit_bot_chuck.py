@@ -1,16 +1,26 @@
-import tweepy,sys,time
-
-Consumer_Key ='YQKk8BVbrK0hTne6RqqPbhrjy'
-Consumer_Secret='QLDRTUoC0GT7y3z3hbkUd46uyHlh4XQOMnR3sQ6fEbJ3WE69lJ'
-Access_Token='401187814-nYmgn2UOmywfhJDIuWBG6EbdyTsOzEXAkJzYLaXZ'
-Access_Token_Secret	= 'o6N8dtxUnUKnwAMgIWEJYj8ouozaPUKT5Mg485ZT94B9q'
+import tweepy,sys,time,requests,json
+from twit_keys import *
 
 def twit_bot():
 	auth = tweepy.OAuthHandler(Consumer_Key, Consumer_Secret)
 	auth.set_access_token(Access_Token, Access_Token_Secret)
 	api = tweepy.API(auth)
-	output_text="hello bot"
-	api.update_status(status=output_text)
 
+	url= "https://api.chucknorris.io/jokes/random"
+	i=0
+	while(i<3):
+		resp= requests.get(url=url).text
+		data= json.loads(resp)
+		output_text=data['value']
+		api.update_status(status=output_text)
+		i+=1
+		print output_text
+		time.sleep(100)
+	# public_tweets = api.home_timeline()
+	# for tweet in public_tweets:
+	#     print tweet.text
+	# user1=api.get_user("@FuckFeelings")
+	# print user1.screen_name
+	# print user1.followers_count
 twit_bot()
 print "done"
